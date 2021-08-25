@@ -2,6 +2,7 @@ import re
 from random import random
 from faker import Faker
 
+
 def valida_nome(nome):
     padrao = "^[A-Z][a-z]+\s[A-Z][a-z]+$"
     matches = re.search(padrao, nome)
@@ -19,7 +20,6 @@ def valida_email(email):
         return 'Válido'
     else:
         return 'Inválido'
-
 
 def valida_senha(senha):
     padrao = "^(?=.*[0-9])(?=.*[A-Z])[0-9a-zA-Z]{8}$"
@@ -92,7 +92,6 @@ def testes():
     for numero in numeros:
         print(numero + " : " + valida_numeros(numero))
 
-
 def gera_dataset(p_qtde):
     exp = Faker('pt_BR')
     lst_nome = []
@@ -148,9 +147,10 @@ def menu():
                   "4. Validar cpf:" + "\r\n" +
                   "5. Validar data:" + "\r\n" +
                   "6. Validar numero:" + "\r\n" +
-                  "7. Executar testes pre-definidos:" + "\r\n" +
-                  "8. Executar testes com dados aleatórios: " + "\r\n" + "\r\n"
-                                                               "Escolha sua opção: ")
+                  "7. Validar telefone:" + "\r\n" +
+                  "8. Executar testes pre-definidos:" + "\r\n" +
+                  "9. Executar testes com dados aleatórios: " + "\r\n" + "\r\n"
+                                                                         "Escolha sua opção: ")
     if opcao == "1":
         nome = input("Digite o Nome:")
         print(nome + " : " + valida_nome(nome))
@@ -170,8 +170,11 @@ def menu():
         numero = input("Digite o numero:")
         print(numero + " : " + valida_numeros(numero))
     elif opcao == "7":
-        testes()
+        telefone = input("Digite o telefone:")
+        print(telefone + " : " + valida_telefone(telefone))
     elif opcao == "8":
+        testes()
+    elif opcao == "9":
         qtde = int(input("Digite a quantidade de testes:"))
         gera_dataset(qtde)
     else:
@@ -180,5 +183,6 @@ def menu():
             return
         else:
             menu()
+
 
 menu()
